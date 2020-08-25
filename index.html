@@ -97,26 +97,38 @@
     
     .muma div:nth-child(1) {
         transform: translateZ(550px);
+        background: url('img/1.jpg') no-repeat;
+        background-size: 100% 100%;
     }
     
     .muma div:nth-child(2) {
         transform: rotateY(60deg) translateZ(550px);
+        background: url('img/2.jpg') no-repeat;
+        background-size: 100% 100%;
     }
     
     .muma div:nth-child(3) {
         transform: rotateY(120deg) translateZ(550px);
+        background: url('img/3.jpg') no-repeat;
+        background-size: 100% 100%;
     }
     
     .muma div:nth-child(4) {
         transform: rotateY(180deg) translateZ(550px);
+        background: url('img/4.jpg') no-repeat;
+        background-size: 100% 100%;
     }
     
     .muma div:nth-child(5) {
         transform: rotateY(240deg) translateZ(550px);
+        background: url('img/5.jpg') no-repeat;
+        background-size: 100% 100%;
     }
     
     .muma div:nth-child(6) {
         transform: rotateY(300deg) translateZ(550px);
+        background: url('img/6.jpg') no-repeat;
+        background-size: 100% 100%;
     }
     
     @keyframes move {
@@ -142,12 +154,12 @@
     </div>
 
     <div class="muma ">
-        <div>1</div>
-        <div>2</div>
-        <div>3</div>
-        <div>4</div>
-        <div>5</div>
-        <div>6</div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
     </div>
 
     <!-- Vidage sample structure -->
@@ -155,8 +167,8 @@
         <div class="Vidage__image"></div>
 
         <video id="VidageVideo" class="Vidage__video" preload="metadata" loop autoplay muted>
-                <source src="videos/bg.webm" type="video/webm">
-                <source src="videos/bg.mp4" type="video/mp4">
+                <source src="video/bg.webm" type="video/webm">
+                <source src="video/bg.mp4" type="video/mp4">
                 </video>
 
         <div class="Vidage__backdrop"></div>
@@ -209,7 +221,6 @@
                 p.innerHTML = '不许骗我噢！！！'
                 img.src = 'img/真的吗.jpg';
             } else if (OkFlag == 8) {
-                alert("啊!!! ")
                 p.innerHTML = '啊！！'
                 img.src = 'img/心动了.gif';
             } else if (OkFlag == 9) {
