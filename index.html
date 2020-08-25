@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/Vidage.css" />
+</head>
+
+<style>
+    * {
+        padding: 0;
+        margin: 0;
+    }
+    
+    body {
+        perspective: 1000px;
+    }
+    
+    .main {
+        position: relative;
+        width: 500px;
+        height: 600px;
+        margin: 0 auto;
+        padding: 100px;
+        background-color: transparent;
+    }
+    
+    .image {
+        position: absolute;
+        top: 100px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 250px;
+        height: 250px;
+        background-color: #fff;
+    }
+    
+    .image img {
+        width: 100%;
+    }
+    
+    .image p {
+        text-align: center;
+        font-size: 16px;
+        font-weight: 800;
+    }
+    
+    button {
+        position: absolute;
+        bottom: 100px;
+        width: 150px;
+        height: 50px;
+        cursor: pointer;
+        margin: 0 auto;
+    }
+    
+    button:nth-child(1) {
+        left: 75px;
+    }
+    
+    button:nth-child(2) {
+        right: 75px;
+    }
+    
+    .notclick {
+        pointer-events: none;
+    }
+    
+    .none {
+        display: none;
+    }
+    
+    .muma {
+        opacity: 0;
+        position: relative;
+        width: 350px;
+        height: 200px;
+        margin: 300px auto;
+        transform-style: preserve-3d;
+        animation: move 42s linear infinite;
+    }
+    
+    .muma:hover {
+        animation-play-state: paused;
+    }
+    
+    .muma div {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: darkviolet;
+    }
+    
+    .muma div:nth-child(1) {
+        transform: translateZ(550px);
+    }
+    
+    .muma div:nth-child(2) {
+        transform: rotateY(60deg) translateZ(550px);
+    }
+    
+    .muma div:nth-child(3) {
+        transform: rotateY(120deg) translateZ(550px);
+    }
+    
+    .muma div:nth-child(4) {
+        transform: rotateY(180deg) translateZ(550px);
+    }
+    
+    .muma div:nth-child(5) {
+        transform: rotateY(240deg) translateZ(550px);
+    }
+    
+    .muma div:nth-child(6) {
+        transform: rotateY(300deg) translateZ(550px);
+    }
+    
+    @keyframes move {
+        0% {
+            transform: rotateY(0);
+        }
+        100% {
+            transform: rotateY(360deg);
+        }
+    }
+</style>
+
+<body>
+    <div class="main">
+        <div class="image ">
+            <img src="img/hi.jpg " alt=" ">
+            <p>练猪🐖，你来啦！</p>
+        </div>
+        <div class="content ">
+            <button>有事快说！</button>
+            <button>你才是猪🐖！</button>
+        </div>
+    </div>
+
+    <div class="muma ">
+        <div>1</div>
+        <div>2</div>
+        <div>3</div>
+        <div>4</div>
+        <div>5</div>
+        <div>6</div>
+    </div>
+
+    <!-- Vidage sample structure -->
+    <div class="Vidage" style="display: none;">
+        <div class="Vidage__image"></div>
+
+        <video id="VidageVideo" class="Vidage__video" preload="metadata" loop autoplay muted>
+                <source src="videos/bg.webm" type="video/webm">
+                <source src="videos/bg.mp4" type="video/mp4">
+                </video>
+
+        <div class="Vidage__backdrop"></div>
+    </div>
+
+
+    </div>
+
+    <!-- Vidage init -->
+    <script src="scripts/Vidage.min.js"></script>
+    <script>
+        new Vidage('#VidageVideo');
+    </script>
+    <script>
+        var main = document.getElementsByClassName('main')[0];
+        var muma = document.getElementsByClassName('muma')[0];
+        var img = document.querySelector('img');
+        var vidage = document.getElementsByClassName('Vidage')[0];
+        var BtnOk = document.querySelector('button');
+        var BtnNo = document.querySelectorAll('button')[1];
+        var p = document.querySelector('p');
+        var PD;
+        var OkFlag = 0;
+        var NoFlag = 0;
+
+        BtnOk.className = 'notclick';
+        BtnOk.style.cursor = 'not-allowed';
+        BtnOk.addEventListener('click', function() {
+            OkFlag++;
+            if (OkFlag == 1) {
+                p.innerHTML = '和我约会！！！'
+                img.src = 'img/约吗.gif';
+                BtnOk.innerHTML = '行！！！';
+                BtnNo.innerHTML = '不行！！';
+            } else if (OkFlag < 6 && OkFlag > 1) {
+                if (OkFlag == 2) {
+                    BtnOk.innerHTML = '行！！'
+                    p.innerHTML = '女孩子要矜持噢！'
+                    img.src = 'img/ke.gif';
+                } else if (OkFlag == 4) {
+                    img.src = 'img/随你.gif';
+                    p.innerHTML = '真的要吗？我是胖子噢！';
+                }
+
+
+            } else if (OkFlag == 6) {
+                p.innerHTML = '真的吗？'
+                img.src = 'img/暗中观察.gif';
+            } else if (OkFlag == 7) {
+                p.innerHTML = '不许骗我噢！！！'
+                img.src = 'img/真的吗.jpg';
+            } else if (OkFlag == 8) {
+                alert("啊!!! ")
+                p.innerHTML = '啊！！'
+                img.src = 'img/心动了.gif';
+            } else if (OkFlag == 9) {
+                alert('送你个礼物！!!');
+                fadeOut(main);
+                fadeIn(muma);
+                vidage.style.display = 'block';
+            }
+        })
+        BtnNo.addEventListener('click', function() {
+            NoFlag++;
+            if (NoFlag == 1 || OkFlag == 1) {
+                alert('约吗？小姐姐');
+                p.innerHTML = '和我约会！！！'
+                img.src = 'img/约吗.gif';
+                BtnOk.innerHTML = '好！！！';
+                BtnNo.innerHTML = '不行！！';
+            } else if (NoFlag == 2) {
+                alert('花花给你');
+                p.innerHTML = '给你花，行吗？'
+                img.src = 'img/给你花花.jpg';
+            } else if (NoFlag == 3) {
+                alert('雪糕给你');
+                p.innerHTML = '再给雪糕，行吗？'
+                img.src = 'img/雪糕.jpg';
+            } else if (NoFlag < 8 && NoFlag > 3) {
+                if (NoFlag == 5) {
+                    alert('随你按！');
+                }
+                p.innerHTML = '继续按不行';
+                img.src = 'img/眨眼.gif';
+            } else if (NoFlag <= 9) {
+                p.innerHTML = '不要！！';
+                img.src = 'img/委屈巴巴.jpg';
+            } else if (NoFlag < 15 && NoFlag > 9) {
+                p.innerHTML = '你有本事再按！'
+                img.src = 'img/威胁.jpg';
+            } else if (NoFlag == 15 || NoFlag < 20) {
+                if (NoFlag == 15) {
+                    alert('你逼我的');
+                }
+                BtnNo.onmouseover = function() {
+                    BtnNo.innerHTML = '行！！！';
+                }
+                BtnNo.onmouseout = function() {
+                    BtnNo.innerHTML = '不行！！'
+                }
+                p.innerHTML = '你按不到吧！！'
+                img.src = 'img/摸摸头.jpg'
+            } else if (NoFlag == 25) {
+                alert('那就按另一个');
+                BtnNo.className = 'none';
+                BtnOk.className = '';
+                BtnOk.style.cursor = '';
+            }
+        })
+
+        function fadeIn(element, speed) {
+            var speed = speed || 30;
+            var num = 0;
+            var st = setInterval(function() {
+                num++;
+                element.style.opacity = num / 10;
+                if (num >= 10) {
+                    clearInterval(st);
+                }
+            }, speed);
+        }
+
+        function fadeOut(element) {
+            var speed = speed || 30;
+            var num = 10;
+            var st = setInterval(function() {
+                num--;
+                element.style.opacity = num / 10;
+                element.style.display = 'none';
+                element.style.transform = 'translateX(-2000px)';
+                if (num <= 0) {
+                    clearInterval(st);
+                }
+            }, speed);
+        }
+    </script>
+</body>
+
+</html>
